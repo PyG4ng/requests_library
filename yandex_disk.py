@@ -6,8 +6,8 @@ from constants import API_KEY
 
 
 class YaUploader:
-    def __init__(self, api_token):
-        self.token = api_token
+    def __init__(self, oauth_token):
+        self.token = oauth_token
 
     def _get_headers(self):
         return {
@@ -23,6 +23,14 @@ class YaUploader:
         }
 
     def upload(self, file_path):
+        """
+        Gets a link from the yandex disk api to upload the file located in the file_path and then
+        uploads it on your yandex disk.
+        Args:
+            file_path: A path to the file to upload.
+
+        Returns: None
+        """
         headers = self._get_headers()
         params = self._get_params(file_path)
         response = requests.get('https://cloud-api.yandex.net/v1/disk/resources/upload', params=params,
@@ -37,7 +45,7 @@ class YaUploader:
 
 
 if __name__ == '__main__':
-    path_to_file = "../json_xml/3.1.formats.json.xml/newsafr.json"
+    path_to_file = "files_to_upload/BlackBerry_Torch_9800_1.jpg"
     token = API_KEY
     uploader = YaUploader(token)
-    result = uploader.upload(path_to_file)
+    uploader.upload(path_to_file)

@@ -20,7 +20,16 @@ def _get_parameters(page, tag, last_n_days):
     }
 
 
-def get_last_questions_on_stackoverflow(tag, last_n_days):
+def get_last_questions_on_stackoverflow(tag: str, last_n_days: int):
+    """Takes a key-word or expression , a number of days and returns a list of questions asked on stackoverflow.com
+    for the last 'n' days
+    Args:
+        tag: Key-word to search for
+        last_n_days: Number of days
+
+    Returns: list of questions asked on stackoverflow.com
+
+    """
     next_page = 1
     has_more = True
     questions = []
@@ -46,8 +55,10 @@ def get_last_questions_on_stackoverflow(tag, last_n_days):
 
 
 if __name__ == '__main__':
-    data = get_last_questions_on_stackoverflow(tag='Python', last_n_days=2)
+    python_questions = get_last_questions_on_stackoverflow(tag='Python', last_n_days=2)
     with open('stackoverflow_python_questions.json', 'w', encoding='utf-8') as file:
-        json.dump(data, file, indent=4)
+        json.dump(python_questions, file, indent=4)
 
-    # pprint(data)
+    # java_questions = get_last_questions_on_stackoverflow(tag='Java', last_n_days=2)
+    # with open('stackoverflow_java_questions.json', 'w', encoding='utf-8') as file:
+    #     json.dump(java_questions, file, indent=4)
