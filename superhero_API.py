@@ -93,10 +93,24 @@ def get_smartest_superhero(superheroes: list):
         print("Can't handle an empty list")
 
 
+def _enter_superhero():
+    """Gets input from user and return a list"""
+    list_of_heroes = []
+    n = ''
+    print("Let's find the smartest superhero.")
+    while n != 'S':
+        n = input('Enter a superhero name or "s" to start compare superheroes you entered: ').capitalize()
+        if n != 'S' and n != '':
+            list_of_heroes.append(n)
+    return list_of_heroes
+
+
 if __name__ == '__main__':
 
-    superheroes_by_intelligence = get_superhero_intelligence_powerstats(
-        ['Captain', 'Hullk', 'Big', 'Deadpool', 'Wonder', 'Thanos', 'Iron'])
+    # superheroes_by_intelligence = get_superhero_intelligence_powerstats(
+    #     ['Captain', 'Hullk', 'Big', 'Deadpool', 'Wonder', 'Thanos', 'Iron'])
+
+    superheroes_by_intelligence = get_superhero_intelligence_powerstats(_enter_superhero())
 
     print(f"\nСамый умный супергерой: {get_smartest_superhero(superheroes_by_intelligence)}")
 
